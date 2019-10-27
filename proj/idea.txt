@@ -1,0 +1,27 @@
+QuestionProvider
+- state(): 'leveling', 'reinforcement', 'level:x', reseta healthMonitor
+- getQuestion() -> {texto, opções, nivel}, se acabou, manda nota
+
+HealthMonitor:
+- reset
+- atualiza barra de saude
+- se errar mto, joga pra fora
+
+askController:
+- exibe barra de saude
+- Exibe pergunta e opções
+- envia a resposta
+- se certa, recebe true e pede a proxima, e coloca no dict de level como true
+- se errada, recebe conteudo explicando, e coloca no dict de level como false
+
+- se no reforco, mostra o nivel
+
+
+
+
+HOJE:
+- healthbar -
+- finalização com o nivel do cara -
+- ver respostas anteriores
+- mostrar resposta correta -
+- sair das questões 
