@@ -95,19 +95,5 @@ public/
 # DynamoDB Local files
 .dynamodb/
 
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
-
+dist/
 # End of https://www.gitignore.io/api/web,node
