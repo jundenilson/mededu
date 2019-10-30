@@ -40,3 +40,9 @@
 .pointer {
     cursor:pointer;
 }
+
+.center {
+    padding: 70px 0;
+    border: 0;
+    text-align: center;
+}

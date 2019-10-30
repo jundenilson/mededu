@@ -17,13 +17,26 @@ const init = () => {
 
         $scope.answer = (alt) => {
             // debugger;
-            if(currentQuestion.answered && currentQuestion.answered != alt) return;
+            if(currentQuestion.answered && currentQuestion.answered != alt) return; //verifica se nao respondeu ou se foi diferente da opção.
             currentQuestion.answered =  alt;
             currentQuestion.correctlyAnswered = alt == currentQuestion.correct;
             if(currentQuestion.correctlyAnswered) $(`#option${alt}`).addClass('correct');
             else {
                 $(`#option${alt}`).addClass('incorrect');
                 $(`#option${currentQuestion.correct}`).addClass('correct');
+                if(currentQuestion.explanationVideo != ''){
+                    $scope.video = true;
+                }
+                if(currentQuestion.explanationAudio != ''){
+                    $scope.audio = true;
+                }
+                if(currentQuestion.explanationText != ''){
+                    $scope.text = true;
+                }
+                if(currentQuestion.explanationImage != ''){
+                    $scope.image = true;
+                }
+                $scope.explaining = true;
             };
             currentQuestion.hasNext = $scope.questions.length > currentQuestionIndex + 1;
             if(!currentQuestion.hasNext) {
@@ -33,6 +46,12 @@ const init = () => {
             }
         }
         $scope.next = () => {
+            $scope.explaining = false;
+            $scope.video = false;
+            $scope.audio = false;
+            $scope.text = false;
+            $scope.image = false;
+            
             currentQuestionIndex = $scope.questions.findIndex(q => !q.answered);
             currentQuestion = $scope.questions[currentQuestionIndex];
             $scope.currentQuestion = currentQuestion;
@@ -49,6 +68,12 @@ const init = () => {
             $scope.answer($scope.questions[index].answered);
         }
     }])
+    var app = angular.module('med-edu');
+    app.filter("trustUrl", ['$sce', function ($sce) {
+        return function (recordingUrl) {
+            return $sce.trustAsResourceUrl(recordingUrl);
+        };
+    }]);
 }
 
 export default init;

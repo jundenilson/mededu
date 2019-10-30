@@ -72,7 +72,7 @@
           <div class="testimonials section py-4">
             <h2 class="section-title text-center m-5" ng-if="announcing">{{announce}}</h2>
             <h3 class="section-title text-center m-5" ng-if="!announcing">{{currentQuestion.question}}</h3>
-            <div class="container py-5" ng-if="!announcing">
+            <div class="container py-5" ng-if="!announcing && !explaining">
               <div class="row">
                 <div class="col-md-4 testimonial text-center">
                   <div id="option1" class="rounded-circle with-shadows option" ng-click="answer(1)"><span>A</span> </div>
@@ -88,6 +88,18 @@
                 </div>
               </div>
             </div>
+            <div class="center" ng-if="explaining && video">
+                <iframe width="560" height="315" ng-src="{{currentQuestion.explanationVideo | trustUrl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+            </div>
+            <div class="container py-5" ng-if="explaining && audio">
+                <audio ng-src="{{currentQuestion.explanationAudio}}" controls></audio>
+            </div>
+            <div class="container py-5" ng-if="explaining && text">
+                <p>{{currentQuestion.explanationText}}</p>
+            </div>
+            <div class="container py-5" ng-if="explaining && image">
+                <img ng-src="{{currentQuestion.explanationImage}}"/>
+            </div>
           </div>
           <div class="progress">
             <div class="progress-bar" role="progressbar" style="width: 10%" ng-repeat="q in questions" 
@@ -98,6 +110,7 @@
           <button type="button" class="btn btn-block btn-pill" ng-click="next()" ng-disabled="!currentQuestion.hasNext" 
             ng-class="{'btn-outline-info': currentQuestion.hasNext, 'btn-outline-light': !currentQuestion.hasNext}" ng-if="!announcing" >Próxima</button>
           <button type="button" ng-click="toNavigate()" class="btn btn-block btn-pill btn-outline-success"  ng-if="announcing">Menu</button>
+          <button type="button" ng-click="toNavigate()" class="btn btn-block btn-pill btn-outline-error"  ng-if="!announcing">Voltar ao Menu</button>
           <div>
           </div>
         </div>
