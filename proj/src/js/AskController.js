@@ -8,7 +8,6 @@ const init = () => {
         $(`.option`).removeClass('correct');
         $(`.option`).removeClass('incorrect');
     }
-    
     angular.module('med-edu').controller('AskController', ['$scope', 'QuestionProviderAgent', ($scope, questionProvider) => {
         $scope.questions = angular.copy(questionProvider.getQuestions());
         var currentQuestionIndex = 0;
@@ -38,34 +37,70 @@ const init = () => {
                 }
                 $scope.explaining = true;
             };
-            currentQuestion.hasNext = $scope.questions.length > currentQuestionIndex + 1;
-            if(!currentQuestion.hasNext) {
+            currentQuestion.hasNext = $scope.questions.length > currentQuestionIndex;
+
+            if($scope.questions.length == (currentQuestionIndex + 1)){
                 const level = questionProvider.judge($scope.questions);
                 $scope.announce = `Parabéns, você conquistou o nivel ${level}`;
-                $scope.announcing = true;
             }
+
+            console.log(currentQuestionIndex);
+        
         }
-        $scope.next = () => {
+        $scope.finish = () => {
+            $scope.announcing = true;
             $scope.explaining = false;
             $scope.video = false;
             $scope.audio = false;
             $scope.text = false;
-            $scope.image = false;
-            
+            $scope.image = false;    
+        }
+        $scope.next = () => {
             currentQuestionIndex = $scope.questions.findIndex(q => !q.answered);
             currentQuestion = $scope.questions[currentQuestionIndex];
             $scope.currentQuestion = currentQuestion;
-            _setupQuestion(currentQuestion);
+            console.log(currentQuestion)
+            console.log(currentQuestionIndex)
+            
+            if(currentQuestion){
+                _setupQuestion(currentQuestion);
+            }
+
+            if(currentQuestionIndex == ($scope.questions.length - 1)) {
+                $scope.finished = true;
+            }
+            
+            $scope.explaining = false;
+            $scope.video = false;
+            $scope.audio = false;
+            $scope.text = false;
+            $scope.image = false;                       
         };
         $scope.toNavigate = () => {
             $scope.$parent.$parent.state = 'navigating';
         }
         $scope.selectQuestion = (index) => {
+            $scope.video = false;
+            $scope.audio = false;
+            $scope.text = false;
+            $scope.image = false;
             if(!$scope.questions[index].answered) return;
             currentQuestionIndex = index;
             currentQuestion = $scope.currentQuestion = $scope.questions[index];
             _clearPaitings();
             $scope.answer($scope.questions[index].answered);
+            if(currentQuestion.explanationVideo != '' && !currentQuestion.answered){
+                $scope.video = true;
+            }
+            if(currentQuestion.explanationAudio != '' && !currentQuestion.answered){
+                $scope.audio = true;
+            }
+            if(currentQuestion.explanationText != '' && !currentQuestion.answered){
+                $scope.text = true;
+            }
+            if(currentQuestion.explanationImage != '' && !currentQuestion.answered){
+                $scope.image = true;
+            }
         }
     }])
     var app = angular.module('med-edu');

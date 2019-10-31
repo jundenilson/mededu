@@ -141,7 +141,7 @@ const _questions = [
         "explanationVideo": "",
         "explanationAudio": "",
         "explanationText": "",
-        "explanationImage": "",
+        "explanationImage": "alcool.jpg",
     },
     {
         "level": 5,
