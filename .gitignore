@@ -96,4 +96,5 @@ public/
 .dynamodb/
 
 dist/*
+proj/dist/*
 # End of https://www.gitignore.io/api/web,node

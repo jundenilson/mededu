@@ -2,135 +2,153 @@
 <html lang="pt_br" ng-app="med-edu">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- CSS Dependencies -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://unpkg.com/shards-ui@latest/dist/css/shards.min.css">
-  <script src="https://kit.fontawesome.com/3c29c1bd7d.js" crossorigin="anonymous"></script>
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/shards-ui@latest/dist/css/shards.min.css">
+    <script src="https://kit.fontawesome.com/3c29c1bd7d.js" crossorigin="anonymous"></script>
 </head>
 
 <body ng-controller="IndexController">
-  <div class="app">
-    <div ng-if="state == 'auth'" ng-controller="AuthController" class="row login-page">
-      <div class="card offset-md-2 col-md-8 main">
-        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-        <div class="card-body">
-          <h4 class="card-title" style="text-align: center;">Bem vindo ao MedEdu</h4>
-          <div class="form-group offset-md-3 col-md-6">
-            <br>
-            <div class="input-group">
-              <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i
-                    class="fa fa-user"></i></span> </div>
-              <input type="text" class="form-control" placeholder="Usuário" ng-model="user">
-            </div>
-            <br>
-            <div class="input-group">
-              <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i
-                    class="fa fa-key"></i></span> </div>
-              <input type="password" class="form-control" placeholder="Senha" ng-model="password">
-            </div>
-            <br>
-            <div class="input-group">
-              <button type="button" class="btn btn-primary" ng-click="login()">Entrar</button>
-            </div>
-          </div>
-          <div class="alert alert-danger alert-dismissible fade show" role="alert" ng-if="badCredentials">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            Credenciais inválidas
-          </div>
-        </div>
-      </div>
-    </div>
-    <div ng-if="state == 'navigating'" class="navigating-page" ng-controller="NavController">
-      <div class="card offset-md-2 col-md-8 main container">
-        <div class="card-body">
-          <h4 class="card-title" style="text-align: center;">Bem vindo UERJ</h4>
-          <div class="nav-panel offset-sm-1 col-sm-10">
-            <button type="button" class="btn btn-outline-success btn-block" ng-click="toLeveling()">Nivelamento</button>
-            <br>
-            <div class="row level-select-group " role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-outline-dark col-sm-11 col-lg" disabled>Nivel 1</button>
-              <button type="button" class="btn btn-outline-dark col-sm-11 col-lg" disabled>Nivel 2</button>
-              <button type="button" class="btn btn-outline-dark col-sm-11 col-lg" disabled>Nivel 3</button>
-              <button type="button" class="btn btn-outline-dark col-sm-11 col-lg" disabled>Nivel 4</button>
-              <button type="button" class="btn btn-outline-dark col-sm-11 col-lg" disabled>Nivel 5</button>
-            </div>
-            <br>
-            <button type="button" class="btn btn-outline-dark btn-block" disabled>Reforço</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div ng-if="state == 'asking'" ng-controller="AskController" class="asking-page">
-      <div class="card offset-md-2 col-md-8 main container">
-        <div class="card-body">
-          <div class="testimonials section py-4">
-            <h2 class="section-title text-center m-5" ng-if="announcing">{{announce}}</h2>
-            <h3 class="section-title text-center m-5" ng-if="!announcing">{{currentQuestion.question}}</h3>
-            <div class="container py-5" ng-if="!announcing">
-              <div class="row">
-                <div class="col-md-4 testimonial text-center">
-                  <div id="option1" class="rounded-circle with-shadows option" ng-click="answer(1)"><span>A</span> </div>
-                  <p>{{currentQuestion.option1}}</p>
+    <div class="app">
+        <div ng-if="state == 'auth'" ng-controller="AuthController" class="row login-page">
+            <div class="card offset-md-2 col-md-8 main">
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">Bem vindo ao MedEdu</h4>
+                    <div class="form-group offset-md-3 col-md-6">
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-user"></i></span> </div>
+                            <input type="text" class="form-control" placeholder="Usuário" ng-model="user">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i
+                                        class="fa fa-key"></i></span> </div>
+                            <input type="password" class="form-control" placeholder="Senha" ng-model="password">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-primary" ng-click="login()">Entrar</button>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" ng-if="badCredentials">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Credenciais inválidas
+                    </div>
                 </div>
-                <div class="col-md-4 testimonial text-center">
-                  <div id="option2" class="rounded-circle with-shadows option" ng-click="answer(2)"><span>B</span> </div>
-                  <p>{{currentQuestion.option2}}</p>
-                </div>
-                <div class="col-md-4 testimonial text-center">
-                  <div id="option3" class="rounded-circle with-shadows option" ng-click="answer(3)"><span>C</span> </div>
-                  <p>{{currentQuestion.option3}}</p>
-                </div>
-              </div>
             </div>
-            <div class="center" ng-if="explaining && video">
-                <iframe width="560" height="315" ng-src="{{currentQuestion.explanationVideo | trustUrl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-            </div>
-            <div class="container py-5" ng-if="explaining && audio">
-                <audio ng-src="{{currentQuestion.explanationAudio}}" controls></audio>
-            </div>
-            <div class="container py-5" ng-if="explaining && text">
-                <p>{{currentQuestion.explanationText}}</p>
-            </div>
-            <div class="center" ng-if="explaining && image">
-                <img ng-src="{{currentQuestion.explanationImage}}"/>
-            </div>
-          </div>
-          <div class="progress" ng-if="!announcing">
-            <div class="progress-bar" role="progressbar" style="width: 10%" ng-repeat="q in questions" 
-            ng-click="selectQuestion($index)"
-            ng-class="{'bg-danger': q.correctlyAnswered === false, 'bg-success': q.correctlyAnswered === true, 'bg-light': q.correctlyAnswered == undefined, pointer: q.answered}" ng-disabled="finished && !announcing"></div>
-          </div>
-          <br>
-          <button type="button" class="btn btn-block btn-pill" ng-click="finished ? finish() : next()" ng-disabled="!currentQuestion.hasNext" 
-            ng-class="{'btn-outline-info': currentQuestion.hasNext, 'btn-outline-light': !currentQuestion.hasNext}" ng-if="!announcing" >{{finished ? 'Finalizar' : 'Próxima'}}</button>
-          <button type="button" ng-click="toNavigate()" class="btn btn-block btn-pill " 
-            ng-class="{'btn-outline-success': announcing, 'btn-outline-error': !announcing}">{{announcing ? 'Menu' : 'Voltar ao Menu'}}</button>
-          <div>
-          </div>
         </div>
-      </div>
-    </div>
+        <div ng-if="state == 'navigating'" class="navigating-page" ng-controller="NavController">
+            <div class="card offset-md-2 col-md-8 main container">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center;">Bem vindo UERJ</h4>
+                    <div class="nav-panel offset-sm-1 col-sm-10">
+                        <button type="button" class="btn btn-outline-success btn-block"
+                            ng-click="toLeveling()">Nivelamento</button>
+                        <br>
+                        <div class="row level-select-group " role="group" aria-label="Basic example"
+                            ng-repeat="level in [1,2,3,4,5]">
+                            <button type="button" class="btn btn-outline-dark col-sm-11 col-lg" ng-disabled="level > maxLevel"
+                                ng-click="toLevel(level)">Nivel {{level}}</button>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-outline-dark btn-block" disabled>Reforço</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="state == 'announcing'" ng-controller="AnnounceController" class="asking-page">
+            <div class="card offset-md-2 col-md-8 main container">
+                <div class="card-body">
+                    <div class="testimonials section py-4">
+                        <h2 class="section-title text-center m-5">{{message}}</h2>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-block btn-pill btn-outline-info" ng-click="next()">Voltar ao menu</button>
+                </div>
+            </div>
+        </div>
+        <div ng-if="state == 'asking'" ng-controller="AskController" class="asking-page">
+            <div class="card offset-md-2 col-md-8 main container">
+                <div class="card-body">
+                    <div class="testimonials section py-4">
+                        <h3 class="section-title text-center m-5">{{currentQuestion.question}}</h3>
+                        <div class="container py-5">
+                            <div class="row">
+                                <div class="col-md-4 testimonial text-center">
+                                    <div id="option1" class="rounded-circle with-shadows option" ng-click="answer(1)">
+                                        <span>A</span> </div>
+                                    <p>{{currentQuestion.option1}}</p>
+                                </div>
+                                <div class="col-md-4 testimonial text-center">
+                                    <div id="option2" class="rounded-circle with-shadows option" ng-click="answer(2)">
+                                        <span>B</span> </div>
+                                    <p>{{currentQuestion.option2}}</p>
+                                </div>
+                                <div class="col-md-4 testimonial text-center">
+                                    <div id="option3" class="rounded-circle with-shadows option" ng-click="answer(3)">
+                                        <span>C</span> </div>
+                                    <p>{{currentQuestion.option3}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center" ng-if="currentQuestion.answered && explaining && currentQuestion.explanationVideo">
+                            <iframe width="560" height="315" ng-src="{{currentQuestion.explanationVideo | trustUrl}}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="container py-5" ng-if="currentQuestion.answered && explaining && currentQuestion.explanationAudio">
+                            <audio ng-src="{{currentQuestion.explanationAudio}}" controls></audio>
+                        </div>
+                        <div class="container py-5" ng-if="currentQuestion.answered && explaining && currentQuestion.explanationText">
+                            <p>{{currentQuestion.explanationText}}</p>
+                        </div>
+                        <div class="center" ng-if="currentQuestion.answered && explaining && currentQuestion.explanationImage">
+                            <img ng-src="{{currentQuestion.explanationImage}}" />
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 10%" ng-repeat="q in questions"
+                            ng-click="selectQuestion($index)"
+                            ng-class="{'bg-danger': q.correctlyAnswered === false, 'bg-success': q.correctlyAnswered === true, 'bg-light': q.correctlyAnswered == undefined, pointer: q.answered}"
+                            ng-disabled="finished && !announcing"></div>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-block btn-pill" ng-click="finished ? finish() : next()"
+                        ng-disabled="!currentQuestion.hasNext"
+                        ng-class="{'btn-outline-info': currentQuestion.hasNext, 'btn-outline-light': !currentQuestion.hasNext}"
+                    >{{finished ? 'Finalizar' : 'Próxima'}}</button>
+                    <button type="button" ng-click="toNavigate()" class="btn btn-block btn-pill "
+                        ng-class="{'btn-outline-success': announcing, 'btn-outline-error': !announcing}">{{announcing ? 'Menu' : 'Voltar ao Menu'}}</button>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Optional JavaScript -->
-    <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
-    <script src="index.js" charset="utf-8"></script>
-    <!-- <script src="css /index.css" charset="utf-8"></script> -->
+        <!-- Optional JavaScript -->
+        <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
+        <script src="index.js" charset="utf-8"></script>
+        <!-- <script src="css /index.css" charset="utf-8"></script> -->
 </body>
 
 </html>

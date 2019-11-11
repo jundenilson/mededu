@@ -1,34 +1,32 @@
 import _ from 'lodash'
-// QuestionProviderAgent.$inject = [];
 class QuestionProviderAgent {
-    constructor(){
-        this.mode = ''; // TODO: resetar
-        this.questions = [];
-        this.setMode('leveling')
+    static get $inject(){ return ['StateManagerAgent']};
+    stateAgent = {};
+    constructor(stateManagerAgent){
+        this.stateAgent = stateManagerAgent;
     };
-    setMode(mode) {
-        this.mode = mode;
-        if(this.mode == 'leveling'){
-            // this.questions = questions;
-            this.questions = _.shuffle(_questions);
-        }
-    }
     getQuestions(){
-        return this.questions;
+        var resultingQuestions = [];
+
+        //TODO: Retirar quando vierem as perguntas
+        resultingQuestions = _.shuffle(_questions);
+        return angular.copy(resultingQuestions);
+
+        if(stateAgent.isLeveling)
+            resultingQuestions = this.getLevelingQuestions();
+        const questions = _.shuffle(_questions);
+        resultingQuestions = _.take(questions.filter(q => q.level == this.stateAgent.currentLevel), 10);
+        return angular.copy(resultingQuestions);
     }
-    judge(questions) {
-        if(this.mode == 'leveling'){
-            const allLevel1 = questions.filter(q => q.level == 1 && q.correctlyAwnsered).length == 2;
-            const allLevel2 = questions.filter(q => q.level == 2 && q.correctlyAwnsered).length == 2;
-            const allLevel3 = questions.filter(q => q.level == 3 && q.correctlyAwnsered).length == 2;
-            const allLevel4 = questions.filter(q => q.level == 4 && q.correctlyAwnsered).length == 2;
-            if(allLevel1 && allLevel2 && allLevel3 && allLevel4) return 5;
-            if(allLevel1 && allLevel2 && allLevel3) return 4;
-            if(allLevel1 && allLevel2) return 3;
-            if(allLevel1) return 2;
-            return 1;
-        }
-    }    
+    getLevelingQuestions(){
+        const questions = _.shuffle(_questions);
+        const lv1 = _.take(questions.filter(q => q.level == 1), 2);
+        const lv2 = _.take(questions.filter(q => q.level == 2), 2);
+        const lv3 = _.take(questions.filter(q => q.level == 3), 2);
+        const lv4 = _.take(questions.filter(q => q.level == 4), 2);
+        const lv5 = _.take(questions.filter(q => q.level == 5), 2);
+        return [...lv1,...lv2,...lv3,...lv4,...lv5]
+    }
 }
 
 export default () => angular.module('med-edu').service('QuestionProviderAgent', QuestionProviderAgent)
