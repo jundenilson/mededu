@@ -3,6 +3,7 @@ const init = function() {
     ($scope, stateManagerAgent) => {
       $scope.toLevel = (x) => stateManagerAgent.toLevel(x);
       $scope.toLeveling = () => stateManagerAgent.toLeveling();
+      $scope.toClinic = () => stateManagerAgent.toClinic();
       $scope.maxLevel = stateManagerAgent.getMaxLevel(); 
     }
   ])

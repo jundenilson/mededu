@@ -5,6 +5,7 @@ class StateManagerAgent {
     maxLevel = 0;
     isReinforcing = false;
     isLeveling =  false;
+    isClinic = false;
     currentMsg = '';
     next = () => null;
     constructor(){
@@ -19,12 +20,19 @@ class StateManagerAgent {
         this.currentLevel = x;
         this.stateSetter('asking');
     }
+    toClinic(){
+        console.log(this.currentLevel); 
+        
+        this.isClinic = true;
+        this.stateSetter('clinic');
+    }
     toReinforcement(){
         this.toDefaults();
         this.isReinforcing = true;
         this.stateSetter('asking');
     }
     toLeveling(){
+        console.log("entrou"); 
         this.toDefaults();
         this.isLeveling = true;
         this.stateSetter('asking');

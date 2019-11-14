@@ -9,15 +9,31 @@ class JudgeAgent {
         if(this.stateAgent.isLeveling){
             const level = this.judgeLeveling(questions);
             if(level > this.stateAgent.getMaxLevel())
-                this.stateAgent.setMaxLevel(level);
+                this.stateAgent.setMaxLevel(level);    
             this.stateAgent.announce(`Parabéns, você conquistou o nivel ${level}`)
         } else {
             const result = this.judgeLevel(questions);
             if(this.stateAgent.isReinforcing)
-                this.stateAgent.announce(`Parabéns, você terminou o reforço do nivel ${this.stateAgent.currentLevel}`)
+                if(this.stateAgent.currentLevel == 1){
+                    this.stateAgent.announce(`Parabéns, você terminou o reforço do nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um XXX.`)
+                }
+                if(this.stateAgent.currentLevel == 2){
+                    this.stateAgent.announce(`Parabéns, você terminou o reforço do nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um YYY.`)
+                }
+                if(this.stateAgent.currentLevel == 3){
+                    this.stateAgent.announce(`Parabéns, você terminou o reforço do nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um ZZZ.`)
+                }
             if(result == 'success' && this.stateAgent.currentLevel + 1 > this.stateAgent.getMaxLevel()){
                 this.stateAgent.setMaxLevel(this.stateAgent.currentLevel + 1);
-                this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}`)
+                if(this.stateAgent.currentLevel == 1){
+                    this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um XXX.`)
+                }
+                if(this.stateAgent.currentLevel == 2){
+                    this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um YYY.`)
+                }
+                if(this.stateAgent.currentLevel == 3){
+                    this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um ZZZ.`)
+                }
             }
             else if(result == 'fail')
                 this.stateAgent.announce(`Você precisa fazer um reforço`, () => this.stateAgent.toReinforcement())
