@@ -26,6 +26,6 @@ JudgeAgent();
 
 angular.module('med-edu').controller('IndexController', ['$scope', 'StateManagerAgent', function($scope, stateManagerAgent){
     $scope.state = 'auth';
-    $scope.state = 'navigating'
+    // $scope.state = 'navigating'
     stateManagerAgent.init((state) => $scope.state = state)
 }]);
