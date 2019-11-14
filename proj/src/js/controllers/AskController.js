@@ -27,16 +27,18 @@ const init = () => {
             };
             currentQuestion.hasNext = $scope.questions.length > currentQuestionIndex;
 
-            if($scope.questions.length == (currentQuestionIndex + 1))
-                judgeAgent.judge($scope.questions);
+            // if($scope.questions.length == (currentQuestionIndex + 1))
+            //     judgeAgent.judge($scope.questions);
         }
         $scope.finish = () => {
             $scope.announcing = true;
             $scope.explaining = false;
+            judgeAgent.judge($scope.questions);
         }
         $scope.next = () => {
             currentQuestionIndex = $scope.questions.findIndex(q => !q.answered);
             currentQuestion = $scope.questions[currentQuestionIndex];
+            console.log("correct", currentQuestion.correct)
             $scope.currentQuestion = currentQuestion;
             
             if(currentQuestion)

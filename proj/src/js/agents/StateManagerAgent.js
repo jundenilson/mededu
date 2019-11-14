@@ -13,7 +13,6 @@ class StateManagerAgent {
     };
     init(fn) {
         this.stateSetter = fn;
-        console.log('fn', fn)
     };
     toLevel(x){
         this.toDefaults();
@@ -21,9 +20,6 @@ class StateManagerAgent {
         this.stateSetter('asking');
     }
     toClinic(){
-        console.log(this.currentLevel); 
-        
-        this.isClinic = true;
         this.stateSetter('clinic');
     }
     toReinforcement(){

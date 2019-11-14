@@ -62,7 +62,8 @@
                         <br>
                         <button type="button" class="btn btn-outline-dark btn-block" disabled>Reforço</button>
                         <br>
-                        <button type="button" class="btn btn-outline-success btn-block" ng-click="toClinic()">Consultório</button>
+                        {{maxLevel}}
+                        <button type="button" class="btn btn-outline-success btn-block" ng-click="toClinic()" ng-disabled="maxLevel == 0">Consultório</button>
                     </div>
                 </div>
             </div>
@@ -125,6 +126,7 @@
                             ng-disabled="finished && !announcing"></div>
                     </div>
                     <br>
+                    {{finished}}
                     <button type="button" class="btn btn-block btn-pill" ng-click="finished ? finish() : next()"
                         ng-disabled="!currentQuestion.hasNext"
                         ng-class="{'btn-outline-info': currentQuestion.hasNext, 'btn-outline-light': !currentQuestion.hasNext}"
@@ -142,19 +144,12 @@
                 <div class="card-body">
                     <div class="testimonials section py-4">
                         <h3 class="section-title text-center m-5">Consultorio UERJ</h3>
-                        <div class="center" ng-if="">
-                            <img ng-src="level1.jpg" width="600"/>
-                        </div>
-                        <div class="center" ng-if="currentLevel == 2">
-                            <img ng-src="level2.jpg" />
-                        </div>
-                        <div class="center" ng-if="currentLevel == 3">
-                            <img ng-src="level3.jpg" />
+                        <div class="center">
+                            <img ng-src="{{rewardImage}}" width="600"/>
                         </div>
                     </div>
                     <br>
-                    <button type="button" ng-click="toNavigate()" class="btn btn-block btn-pill "
-                        ng-class="{'btn-outline-success': announcing, 'btn-outline-error': !announcing}">{{announcing ? 'Menu' : 'Voltar ao Menu'}}</button>
+                    <button type="button" ng-click="toNavigate()" class="btn btn-block btn-pill btn-info">Voltar ao Menu</button>
                     <div>
                     </div>
                 </div>
