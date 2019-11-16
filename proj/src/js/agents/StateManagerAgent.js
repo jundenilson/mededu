@@ -41,7 +41,7 @@ class StateManagerAgent {
         return this.maxLevel;
     }
     setMaxLevel(x){
-        this.maxLevel = x;
+        this.maxLevel = x <= 3 ? x : 3;
         console.log('max', this.maxLevel);
         window.localStorage.setItem('maxLv', this.maxLevel)
     }

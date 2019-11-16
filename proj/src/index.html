@@ -62,7 +62,6 @@
                         <br>
                         <button type="button" class="btn btn-outline-dark btn-block" disabled>Reforço</button>
                         <br>
-                        {{maxLevel}}
                         <button type="button" class="btn btn-outline-success btn-block" ng-click="toClinic()" ng-disabled="maxLevel == 0">Consultório</button>
                     </div>
                 </div>
@@ -126,7 +125,6 @@
                             ng-disabled="finished && !announcing"></div>
                     </div>
                     <br>
-                    {{finished}}
                     <button type="button" class="btn btn-block btn-pill" ng-click="finished ? finish() : next()"
                         ng-disabled="!currentQuestion.hasNext"
                         ng-class="{'btn-outline-info': currentQuestion.hasNext, 'btn-outline-light': !currentQuestion.hasNext}"

@@ -8,14 +8,12 @@ class QuestionProviderAgent {
     getQuestions(){
         var resultingQuestions = [];
 
-        //TODO: Retirar quando vierem as perguntas
-        resultingQuestions = _.take(_.shuffle(_questions), 10);
-        return angular.copy(resultingQuestions);
-
         if(this.stateAgent.isLeveling)
             resultingQuestions = this.getLevelingQuestions();
-        const questions = _.shuffle(_questions);
-        resultingQuestions = _.take(questions.filter(q => q.level == this.stateAgent.currentLevel), 10);
+        else {
+            const questions = _.shuffle(_questions);
+            resultingQuestions = _.take(questions.filter(q => q.level == this.stateAgent.currentLevel), 10);
+        }
         return angular.copy(resultingQuestions);
     }
     getLevelingQuestions(){
