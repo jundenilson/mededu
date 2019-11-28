@@ -21,6 +21,10 @@ class JudgeAgent {
                 if(this.stateAgent.currentLevel == 2)
                     this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar um Notebook.`)
                 if(this.stateAgent.currentLevel == 3)
+                    this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar uma Estante.`)
+                if(this.stateAgent.currentLevel == 4)
+                    this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar uma Balança.`)
+                if(this.stateAgent.currentLevel == 5)
                     this.stateAgent.announce(`Parabéns, você terminou o nivel ${this.stateAgent.currentLevel}. Você acaba de ganhar uma Maca Clinica.`)
                 }
             else if(result == 'fail')

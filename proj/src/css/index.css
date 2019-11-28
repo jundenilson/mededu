@@ -8,7 +8,7 @@
 }
 
 .nav-panel{
-    top: 30%;
+    top: 10%;
     height: 400px;
 }
 
@@ -46,3 +46,15 @@
     border: 0;
     text-align: center;
 }
+
+img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+body {
+    background-image: url("background.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+   }
