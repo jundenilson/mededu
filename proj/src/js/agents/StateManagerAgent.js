@@ -28,7 +28,7 @@ class StateManagerAgent {
         this.stateSetter('asking');
     }
     toLeveling(){
-        console.log("entrou"); 
+        //console.log("entrou"); 
         this.toDefaults();
         this.isLeveling = true;
         this.stateSetter('asking');
@@ -41,7 +41,7 @@ class StateManagerAgent {
         return this.maxLevel;
     }
     setMaxLevel(x){
-        this.maxLevel = x <= 3 ? x : 3;
+        this.maxLevel = x <= 5 ? x : 5;
         console.log('max', this.maxLevel);
         window.localStorage.setItem('maxLv', this.maxLevel)
     }

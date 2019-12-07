@@ -39,6 +39,7 @@ const init = () => {
             currentQuestionIndex = $scope.questions.findIndex(q => !q.answered);
             currentQuestion = $scope.questions[currentQuestionIndex];
             console.log("correct", currentQuestion.correct)
+            console.log("level", currentQuestion.level)
             $scope.currentQuestion = currentQuestion;
             
             if(currentQuestion)
